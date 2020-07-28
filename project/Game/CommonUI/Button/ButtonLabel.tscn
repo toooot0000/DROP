@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Asset/Font/fnt_button.tres" type="DynamicFont" id=1]
+
+[node name="ButtonLabel" type="Label"]
+anchor_left = 0.051
+anchor_top = 0.1
+anchor_right = 0.947
+anchor_bottom = 0.854
+margin_left = 0.000232697
+margin_top = -0.0106945
+margin_right = -0.0397949
+margin_bottom = 0.0672913
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Start"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

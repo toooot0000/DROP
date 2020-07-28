@@ -1,9 +1,78 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Pic/title_main.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Pic/Button/button_start.png" type="Texture" id=3]
+[ext_resource path="res://Asset/效果图/Main.png" type="Texture" id=4]
+[ext_resource path="res://Asset/Pic/Button/button_level.png" type="Texture" id=5]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 0.00012207
 __meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+anchor_left = 0.13
+anchor_top = 0.097
+anchor_right = 0.881
+anchor_bottom = 0.237
+margin_left = 0.272171
+margin_top = -0.118759
+margin_right = -0.469849
+margin_bottom = 0.76123
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="TextureButton" parent="."]
+anchor_left = 0.212
+anchor_top = 0.465
+anchor_right = 0.808
+anchor_bottom = 0.598
+margin_left = 0.163513
+margin_top = 0.422974
+margin_right = -0.0684814
+margin_bottom = -0.241089
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level" type="TextureButton" parent="."]
+anchor_left = 0.212
+anchor_top = 0.618
+anchor_right = 0.808
+anchor_bottom = 0.751
+margin_left = -0.276917
+margin_top = 0.77771
+margin_right = -0.508911
+margin_bottom = 0.113647
+texture_normal = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.439216 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
