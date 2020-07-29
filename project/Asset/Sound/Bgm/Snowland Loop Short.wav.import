@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Snowland Loop Short.wav-42b943e71006e4aa8e406c6966d436fd.sample"
+
+[deps]
+
+source_file="res://Asset/Sound/Bgm/Snowland Loop Short.wav"
+dest_files=[ "res://.import/Snowland Loop Short.wav-42b943e71006e4aa8e406c6966d436fd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

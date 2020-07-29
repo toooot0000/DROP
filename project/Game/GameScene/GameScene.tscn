@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=1]
+[ext_resource path="res://Game/CommonUI/Button/CommonButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Asset/效果图/Main.png" type="Texture" id=3]
+[ext_resource path="res://Asset/Pic/Button/button_level.png" type="Texture" id=4]
+[ext_resource path="res://Asset/Pic/title_main.png" type="Texture" id=5]
+[ext_resource path="res://Asset/Pic/icon_setting.png" type="Texture" id=6]
+[ext_resource path="res://Game/Element/Player/Player.tscn" type="PackedScene" id=7]
+
+[node name="EntryScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_right = -6.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.13
+anchor_top = 0.097
+anchor_right = 0.881
+anchor_bottom = 0.237
+margin_left = 0.272171
+margin_top = -0.118759
+margin_right = -0.469849
+margin_bottom = 0.76123
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" parent="." instance=ExtResource( 2 )]
+visible = false
+anchor_left = 0.213
+margin_left = -0.546021
+margin_top = -0.720093
+margin_right = 0.463989
+margin_bottom = -0.384155
+
+[node name="Level" parent="." instance=ExtResource( 2 )]
+visible = false
+anchor_left = 0.213
+anchor_top = 0.618
+anchor_bottom = 0.751
+margin_left = -0.546021
+margin_top = 0.456055
+margin_right = 0.46405
+margin_bottom = 0.791992
+texture_normal = ExtResource( 4 )
+
+[node name="Setting" parent="." instance=ExtResource( 2 )]
+visible = false
+anchor_left = 0.406
+anchor_top = 0.803
+anchor_right = 0.613
+anchor_bottom = 0.919
+margin_left = -0.251984
+margin_top = -0.0239258
+margin_right = -0.346069
+margin_bottom = 0.848022
+texture_normal = ExtResource( 6 )
+
+[node name="Main" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.439216 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
