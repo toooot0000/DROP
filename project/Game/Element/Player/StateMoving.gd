@@ -15,5 +15,6 @@ func _unhandled_input(event):
 
 
 func on_player_left():
+	owner.emit_signal("stop_move")
 	change_state("Idle")
 	pass

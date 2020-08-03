@@ -8,11 +8,12 @@ const GRAY = Color(\"6e6e6e\")
 const LITE_GRAY = Color(\"919191\")
 const RED = Color(\"e45d7d\")
 
+const BORDER_GUIDE_LINE = preload(\"res://Game/GameScene/IntroStages/BorderGuideLine/BorderGuideLine.tscn\")
+
 enum FAIL_TYPE{ENEMY_TOUCH_PLAYER, PLAYER_TOUCH_BLOCK, ENEMY_TOUCH_TARGET}
 
 export(bool)var is_debugging = false
 export(int)var all_level_num = 5
-
 
 func get_all_level_num():
 	var list = list_files_in_directory('res://Game/Levels/LevelScenes/')

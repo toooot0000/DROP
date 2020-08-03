@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Game/Levels/LevelBase.gd" type="Script" id=1]
+[ext_resource path="res://Game/Levels/LevelScenes/1.gd" type="Script" id=1]
 [ext_resource path="res://Asset/Pic/Game/borderline_horizontal.png" type="Texture" id=2]
 [ext_resource path="res://Game/Element/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Asset/Pic/Game/borderline_vertical.png" type="Texture" id=4]
@@ -103,9 +103,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-time_one_star = 30.0
-time_two_star = 20.0
-time_three_star = 10.0
+time_one_star = 30000.0
+time_two_star = 20000.0
+time_three_star = 10000.0
 
 [node name="BorderUp" type="Area2D" parent="." groups=[
 "Border",
@@ -186,14 +186,14 @@ type = 3
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 3 )]
-position = Vector2( 760.995, 1200.02 )
-rotation_speed = 15.0
+position = Vector2( 760.995, 1328.87 )
+rotation_speed = 0.0
 moving_speed = 200.0
 
 [node name="Target" parent="." groups=[
 "Target",
 ] instance=ExtResource( 7 )]
-position = Vector2( 754.133, 542.599 )
+position = Vector2( 768.816, 559.285 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2( 50, 50 )
@@ -209,6 +209,8 @@ bus = "Effect"
 [connection signal="area_entered" from="BorderDown2" to="." method="_on_BorderDown2_area_entered"]
 [connection signal="area_entered" from="BorderDown3" to="." method="_on_BorderDown3_area_entered"]
 [connection signal="player_touch_border" from="Player" to="." method="_on_Player_player_touch_border"]
+[connection signal="start_move" from="Player" to="." method="_on_Player_start_move"]
+[connection signal="stop_move" from="Player" to="." method="_on_Player_stop_move"]
 [connection signal="touched_by_enemy" from="Player" to="." method="_on_Player_touched_by_enemy"]
 [connection signal="enemy_touch_target" from="Target" to="." method="_on_Target_enemy_touch_target"]
 [connection signal="player_touch_target" from="Target" to="." method="_on_Target_player_touch_target"]

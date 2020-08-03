@@ -22,4 +22,5 @@ func _unhandled_input(event):
 func on_player_tap():
 #	print("tap")
 	change_state("Moving")
+	owner.emit_signal("start_move")
 	pass

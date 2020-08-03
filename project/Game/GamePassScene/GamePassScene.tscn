@@ -7,7 +7,7 @@
 [ext_resource path="res://Asset/Pic/icon_replay.png" type="Texture" id=5]
 [ext_resource path="res://Asset/Pic/icon_setting.png" type="Texture" id=6]
 [ext_resource path="res://Game/GamePassScene/Stars.gd" type="Script" id=7]
-[ext_resource path="res://Asset/Font/站酷快乐体2016修订版.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Asset/Font/fnt_zhankukuaile2016.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Game/GamePassScene/Time.gd" type="Script" id=9]
 [ext_resource path="res://Game/GamePassScene/GamePassScene.gd" type="Script" id=10]
 [ext_resource path="res://Asset/Pic/Element/element_main.png" type="Texture" id=11]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Asset/Pic/icon_star.png" type="Texture" id=13]
 [ext_resource path="res://Asset/Pic/Button/button_common.png" type="Texture" id=14]
 [ext_resource path="res://Asset/Pic/bg_green.png" type="Texture" id=15]
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "in"
@@ -104,7 +103,6 @@ font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 220
-outline_color = Color( 0.74902, 0.776471, 0.470588, 1 )
 font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=5]

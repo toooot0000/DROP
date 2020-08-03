@@ -32,11 +32,9 @@ func _on_Setting_button_down():
 		emit_signal("call_setting")
 	pass # Replace with function body.
 
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	is_anim_finished = true
 	pass # Replace with function body.
-
 
 func _on_AnimationPlayer_animation_started(anim_name):
 	is_anim_finished = false

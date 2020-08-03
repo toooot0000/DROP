@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Asset/Font/fnt_zhankukuaile2016.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Game/GameScene/IntroStages/BorderGuideLine/BorderGuideLine.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 130
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1.2, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.533333 ), Color( 1, 1, 1, 0.974652 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="BorderGuideLine" type="Label"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 92.0
+margin_top = 908.239
+margin_right = 1149.0
+margin_bottom = 1208.24
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Touch borders will reset level"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 2 )
+anims/in = SubResource( 3 )
+anims/out = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

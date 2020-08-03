@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Game/Levels/LevelBase.gd" type="Script" id=1]
 [ext_resource path="res://Asset/Pic/Game/borderline_horizontal.png" type="Texture" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://Asset/Pic/Game/borderline_vertical.png" type="Texture" id=4]
 [ext_resource path="res://Game/Levels/BorderLine.gd" type="Script" id=5]
 [ext_resource path="res://Game/Element/Target/Target.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Game/Element/Enemy/Enemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Game/Element/Block/Block.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 621.193, 158.489 )
@@ -96,7 +94,6 @@ tracks/0/keys = {
 }
 
 [node name="Level" type="Control"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 9.0
@@ -106,9 +103,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-time_one_star = 30.0
-time_two_star = 20.0
-time_three_star = 10.0
+time_one_star = 120.0
+time_two_star = 90.0
+time_three_star = 60.0
 
 [node name="BorderUp" type="Area2D" parent="." groups=[
 "Border",
@@ -189,32 +186,15 @@ type = 3
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 3 )]
-position = Vector2( 437.665, 754.809 )
-rotation = -0.785397
+position = Vector2( 592.029, 619.732 )
+rotation = -4.71238
 rotation_speed = 15.0
 moving_speed = 200.0
-
-[node name="Enemy" parent="." groups=[
-"Enemy",
-] instance=ExtResource( 8 )]
-position = Vector2( 617.23, 1275.8 )
-rotation_speed = 15.0
-moving_speed = 150.0
 
 [node name="Target" parent="." groups=[
 "Target",
 ] instance=ExtResource( 7 )]
-position = Vector2( 166.133, 430.599 )
-
-[node name="Block" parent="." groups=[
-"Block",
-] instance=ExtResource( 9 )]
-position = Vector2( 1056.15, 1071.35 )
-
-[node name="Block2" parent="." groups=[
-"Block",
-] instance=ExtResource( 9 )]
-position = Vector2( 440.949, 411.599 )
+position = Vector2( 588.86, 1109.68 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2( 50, 50 )

@@ -1,12 +1,16 @@
 extends Node
 
 const SAVE_PATH = "user://save.sav"
+const SAVE_LEVEL_PATH = "user://save_level.sav"
 const DEBUG_PATH = "res://Debug/save.sav"
 
 var current_level:int = 1
 var level_states:Array = []
 var music_volume:float = 1 setget set_music_volume
 var effect_volume:float = 1 setget set_effect_volume
+
+var is_new_player:bool = true
+var is_border_guide_triggered:bool = false
 
 
 func init():
@@ -19,6 +23,11 @@ func init():
 
 func _ready():
 	var f = File.new()
+	if Gl.is_debugging:
+		var dir = Directory.new()
+		dir.remove(SAVE_PATH)
+		dir.remove(SAVE_LEVEL_PATH)
+
 	if !f.file_exists(SAVE_PATH):
 		init()
 		save()
@@ -36,12 +45,16 @@ func save():
 	f.store_float(music_volume)
 	f.store_float(effect_volume)
 	f.store_64(current_level)
-	f.store_64(level_states.size())
 	
+	f.store_8(int(is_border_guide_triggered))
+	f.store_8(int(is_new_player))
+	f.close()
+	
+	f.open(SAVE_LEVEL_PATH, File.WRITE)
+	f.store_64(level_states.size())
 	for i in level_states:
 		f.store_8(int(i['passed']))
 		f.store_8(i['star'])
-	
 	f.close()
 	pass
 
@@ -50,22 +63,25 @@ func load_player_save():
 	f.open(SAVE_PATH, File.READ)
 	var _version = f.get_line()
 	var _is_debugging = f.get_8()
-	if _is_debugging:#如果之前的存档是debug存档，那么这次也就新建一份存档了
-		init()
-		pass
-	else:
-		self.music_volume = f.get_float()
-		self.effect_volume = f.get_float()
-		self.current_level = f.get_64()
-		if current_level<=0:
-			init()
-		else:
-			var level_number = f.get_64()
-			for i in range(level_number):
-				level_states.append({
-					'passed':f.get_8(),
-					'star':f.get_8()
-				})
+#	if _is_debugging:#如果之前的存档是debug存档，那么这次也就新建一份存档了
+#		f.close()
+#		init()
+#		pass
+	#	else:
+	self.music_volume = f.get_float()
+	self.effect_volume = f.get_float()
+	self.current_level = f.get_64()
+	self.is_border_guide_triggered = f.get_8()
+	self.is_new_player = f.get_8()
+	f.close()
+	
+	f.open(SAVE_LEVEL_PATH, File.READ)
+	var level_number = f.get_64()
+	for i in range(level_number):
+		level_states.append({
+			'passed':f.get_8(),
+			'star':f.get_8()
+		})
 	f.close()
 	pass
 
@@ -76,7 +92,7 @@ func pass_level(stars:int):
 			level_states[current_level-1]["star"] = stars
 	else:
 		level_states[current_level-1]["star"] = stars
-	current_level+=1
+	current_level = clamp(current_level+1, 0, Gl.all_level_num)
 	save()
 
 func set_music_volume(value:float):

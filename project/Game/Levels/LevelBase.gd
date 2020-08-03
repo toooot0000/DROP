@@ -7,12 +7,16 @@ signal level_fail(type)
 signal level_restart
 signal level_setup_finished
 
+signal player_into_border_zone
+signal player_out_border_zone
+
 enum TARGET_TYPE{TARGET, ALL_ENEMY}
 
 export(TARGET_TYPE)var target_type 
 export(float)var time_one_star
 export(float)var time_two_star
 export(float)var time_three_star
+#export(String)var intro_info = "" 
 
 #var is_anim_finished:bool = false
 

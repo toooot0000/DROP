@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=1]
 [ext_resource path="res://Asset/EffectPic/game.png" type="Texture" id=2]
@@ -7,14 +7,14 @@
 [ext_resource path="res://Asset/Pic/icon_replay.png" type="Texture" id=5]
 [ext_resource path="res://Asset/Pic/icon_setting.png" type="Texture" id=6]
 [ext_resource path="res://Asset/Pic/Game/game_evaluation_frame.png" type="Texture" id=7]
-[ext_resource path="res://Asset/Font/站酷快乐体2016修订版.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Asset/Font/fnt_zhankukuaile2016.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Game/GameScene/Time.gd" type="Script" id=9]
 [ext_resource path="res://Game/GameScene/GameScene.gd" type="Script" id=10]
 [ext_resource path="res://Asset/Pic/Game/game_evaluation_bar.png" type="Texture" id=11]
 [ext_resource path="res://Game/GameScene/TimeBar.gd" type="Script" id=12]
 [ext_resource path="res://Asset/Pic/icon_star.png" type="Texture" id=13]
 [ext_resource path="res://Game/GameScene/Stars.gd" type="Script" id=14]
-
+[ext_resource path="res://Game/GameScene/IntroStages/IntroLabel/IntroLabel.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "in"
@@ -68,6 +68,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("IntroLabel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.05, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "out"
@@ -100,6 +112,9 @@ mouse_filter = 2
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
+}
+intro_info = {
+3: "Use less time to get more stars"
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -283,6 +298,10 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="IntroLabel" parent="." instance=ExtResource( 15 )]
+modulate = Color( 1, 1, 1, 0 )
+text = ""
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="button_down" from="Buttons/Back" to="." method="_on_Back_button_down"]

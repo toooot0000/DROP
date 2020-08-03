@@ -5,7 +5,8 @@ export(float)var moving_speed = 5
 
 signal touched_by_enemy
 signal player_touch_border
-
+signal start_move
+signal stop_move
 
 var origin_size:Vector2 = Vector2(193, 271)
 var center_point:Vector2 = Vector2.ZERO

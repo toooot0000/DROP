@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Game/Levels/LevelBase.gd" type="Script" id=1]
 [ext_resource path="res://Asset/Pic/Game/borderline_horizontal.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Asset/Pic/Game/borderline_vertical.png" type="Texture" id=4]
 [ext_resource path="res://Game/Levels/BorderLine.gd" type="Script" id=5]
 [ext_resource path="res://Game/Element/Target/Target.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Game/Element/Enemy/Enemy.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Game/Element/Block/Block.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -189,32 +188,25 @@ type = 3
 [node name="Player" parent="." groups=[
 "Player",
 ] instance=ExtResource( 3 )]
-position = Vector2( 437.665, 754.809 )
-rotation = -0.785397
+position = Vector2( 653.796, 1318.44 )
+rotation = -1.83259
 rotation_speed = 15.0
 moving_speed = 200.0
-
-[node name="Enemy" parent="." groups=[
-"Enemy",
-] instance=ExtResource( 8 )]
-position = Vector2( 617.23, 1275.8 )
-rotation_speed = 15.0
-moving_speed = 150.0
 
 [node name="Target" parent="." groups=[
 "Target",
 ] instance=ExtResource( 7 )]
-position = Vector2( 166.133, 430.599 )
+position = Vector2( 598.394, 667.919 )
 
 [node name="Block" parent="." groups=[
 "Block",
 ] instance=ExtResource( 9 )]
-position = Vector2( 1056.15, 1071.35 )
+position = Vector2( 717.122, 990.83 )
 
 [node name="Block2" parent="." groups=[
 "Block",
 ] instance=ExtResource( 9 )]
-position = Vector2( 440.949, 411.599 )
+position = Vector2( 483.328, 992.185 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2( 50, 50 )

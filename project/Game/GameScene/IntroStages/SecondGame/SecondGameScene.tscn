@@ -1,0 +1,339 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Asset/Font/fnt_zhankukuaile2016.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Asset/Pic/bg_green.png" type="Texture" id=2]
+[ext_resource path="res://Game/CommonUI/Button/CommonButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/GameScene/Stars.gd" type="Script" id=4]
+[ext_resource path="res://Game/GameScene/Time.gd" type="Script" id=5]
+[ext_resource path="res://Game/GameScene/TimeBar.gd" type="Script" id=6]
+[ext_resource path="res://Asset/Pic/icon_setting.png" type="Texture" id=7]
+[ext_resource path="res://Asset/Pic/icon_back.png" type="Texture" id=8]
+[ext_resource path="res://Asset/Pic/icon_replay.png" type="Texture" id=9]
+[ext_resource path="res://Asset/Pic/Game/game_evaluation_frame.png" type="Texture" id=10]
+[ext_resource path="res://Asset/Pic/Game/game_evaluation_bar.png" type="Texture" id=11]
+[ext_resource path="res://Asset/Pic/icon_star.png" type="Texture" id=12]
+[ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=13]
+[ext_resource path="res://Game/GameScene/IntroStages/SecondGame/IntroLine2.gd" type="Script" id=14]
+[ext_resource path="res://Game/GameScene/IntroStages/SecondGame/SecondGameScene.gd" type="Script" id=15]
+[ext_resource path="res://Asset/EffectPic/First_time_game.png" type="Texture" id=18]
+
+[sub_resource type="Animation" id=1]
+resource_name = "in"
+length = 1.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("BgGreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 520
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 400
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 130
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=6]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1.2, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.490196 ), Color( 1, 1, 1, 0.533333 ), Color( 1, 1, 1, 0.974652 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "in"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="SecondGameScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/in = SubResource( 1 )
+anims/out = SubResource( 2 )
+
+[node name="Bg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_right = -6.0
+mouse_filter = 2
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameEffect" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.490196 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -6.0
+mouse_filter = 2
+texture = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1236.0
+margin_bottom = 2208.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" parent="Buttons" instance=ExtResource( 3 )]
+anchor_left = 0.049
+anchor_top = 0.032
+anchor_right = 0.146
+anchor_bottom = 0.113
+margin_left = 0.141998
+margin_top = -0.656006
+margin_right = 0.141998
+margin_bottom = 0.496002
+texture_normal = ExtResource( 8 )
+
+[node name="Replay" parent="Buttons" instance=ExtResource( 3 )]
+anchor_left = 0.403
+anchor_top = 0.027
+anchor_right = 0.564
+anchor_bottom = 0.118
+margin_left = 0.473969
+margin_top = 0.383999
+margin_right = 0.511963
+margin_bottom = 0.384003
+texture_normal = ExtResource( 9 )
+
+[node name="Setting" parent="Buttons" instance=ExtResource( 3 )]
+anchor_left = 0.767
+anchor_top = 0.014
+anchor_right = 0.973
+anchor_bottom = 0.13
+margin_left = -0.614014
+margin_top = 0.0879993
+margin_right = -0.466187
+margin_bottom = 0.0880127
+texture_normal = ExtResource( 7 )
+
+[node name="TimeBar" type="Control" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -2.37842
+margin_top = 3.56763
+margin_right = 1233.62
+margin_bottom = 2211.57
+mouse_filter = 2
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="TimeBar"]
+anchor_top = 0.37
+anchor_right = 1.0
+anchor_bottom = 0.619
+margin_left = -145.0
+margin_top = -3.95996
+margin_right = 124.0
+margin_bottom = -2.75208
+custom_fonts/font = SubResource( 3 )
+text = "0:0"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="TextureRect" parent="TimeBar"]
+margin_left = 107.0
+margin_top = 1330.0
+margin_right = 1153.0
+margin_bottom = 1390.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="NinePatchRect" parent="TimeBar"]
+margin_left = 131.0
+margin_top = 1345.0
+margin_right = 1131.0
+margin_bottom = 1376.0
+texture = ExtResource( 11 )
+region_rect = Rect2( 50, 5, 1000, 30 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Stars" type="Control" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -0.629974
+margin_top = -0.630005
+margin_right = 1241.37
+margin_bottom = 2211.37
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star1" type="TextureRect" parent="Stars"]
+margin_left = 51.0
+margin_top = 1408.0
+margin_right = 159.0
+margin_bottom = 1516.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star2" type="TextureRect" parent="Stars"]
+margin_left = 576.0
+margin_top = 1408.0
+margin_right = 684.0
+margin_bottom = 1516.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star3" type="TextureRect" parent="Stars"]
+margin_left = 1095.0
+margin_top = 1408.0
+margin_right = 1203.0
+margin_bottom = 1516.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelNum" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 8.52441
+margin_top = 754.238
+margin_right = 1213.52
+margin_bottom = 1429.24
+custom_fonts/font = SubResource( 4 )
+text = "lv.99"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="IntroLine" type="Label" parent="."]
+margin_left = 92.0
+margin_top = 1456.0
+margin_right = 1149.0
+margin_bottom = 1756.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Drop spins when not moving"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IntroLine"]
+anims/idle = SubResource( 6 )
+anims/in = SubResource( 7 )
+anims/out = SubResource( 8 )
+
+[node name="Timer" type="Timer" parent="IntroLine"]
+wait_time = 3.0
+
+[node name="BgGreen" type="Sprite" parent="."]
+position = Vector2( 616.273, 1108.16 )
+texture = ExtResource( 2 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="button_down" from="Buttons/Back" to="." method="_on_Back_button_down"]
+[connection signal="button_down" from="Buttons/Replay" to="." method="_on_Replay_button_down"]
+[connection signal="button_down" from="Buttons/Setting" to="." method="_on_Setting_button_down"]
+[connection signal="timeout" from="IntroLine/Timer" to="IntroLine" method="_on_Timer_timeout"]
