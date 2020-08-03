@@ -1,0 +1,228 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Asset/EffectPic/setting_interface.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Pic/common_shade1x1.png" type="Texture" id=2]
+[ext_resource path="res://Game/SettingScene/SettingScene.gd" type="Script" id=3]
+[ext_resource path="res://Asset/Pic/Setting/bg_setting.png" type="Texture" id=4]
+[ext_resource path="res://Asset/Font/站酷快乐体2016修订版.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Asset/Pic/Setting/circle.png" type="Texture" id=6]
+[ext_resource path="res://Asset/Pic/Setting/bar.png" type="Texture" id=7]
+[ext_resource path="res://Game/CommonUI/Button/CommonButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Asset/Pic/Button/button_common.png" type="Texture" id=9]
+[ext_resource path="res://Game/SettingScene/Circle.gd" type="Script" id=10]
+
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 180
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 90
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 90
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="SettingScene" type="Control"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shade" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.352941 )
+margin_right = 1245.0
+margin_bottom = 2203.0
+mouse_filter = 0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1245.0
+margin_bottom = 2203.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="TextureRect" parent="CenterContainer"]
+margin_left = 193.0
+margin_top = 458.0
+margin_right = 1051.0
+margin_bottom = 1745.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CenterContainer/Bg"]
+margin_left = 108.0
+margin_top = 51.0
+margin_right = 751.0
+margin_bottom = 232.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Setting"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="Label" parent="CenterContainer/Bg"]
+margin_left = 92.929
+margin_top = 480.543
+margin_right = 315.929
+margin_bottom = 571.543
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Music"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Effect" type="Label" parent="CenterContainer/Bg"]
+margin_left = 85.0
+margin_top = 695.0
+margin_right = 361.0
+margin_bottom = 786.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Effect"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar1" type="TextureRect" parent="CenterContainer/Bg"]
+margin_left = 391.0
+margin_top = 538.0
+margin_right = 771.0
+margin_bottom = 549.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureButton" parent="CenterContainer/Bg/Bar1"]
+anchor_left = 0.926
+anchor_top = -1.909
+anchor_right = 1.066
+anchor_bottom = 2.909
+margin_left = 0.119965
+margin_top = -0.000999451
+margin_right = -0.0800476
+margin_bottom = 0.000997543
+texture_normal = ExtResource( 6 )
+expand = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+max_x = 352.0
+min_x = -21.0
+
+[node name="Bar2" type="TextureRect" parent="CenterContainer/Bg"]
+margin_left = 390.837
+margin_top = 748.25
+margin_right = 770.837
+margin_bottom = 759.25
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureButton" parent="CenterContainer/Bg/Bar2"]
+anchor_left = 0.926
+anchor_top = -1.909
+anchor_right = 1.066
+anchor_bottom = 2.909
+margin_left = 0.119995
+margin_top = -0.00100136
+margin_right = -0.0800171
+margin_bottom = 0.000997543
+texture_normal = ExtResource( 6 )
+expand = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+max_x = 352.0
+min_x = -21.0
+type = 1
+
+[node name="CloseButton" parent="CenterContainer/Bg" instance=ExtResource( 8 )]
+anchor_left = 0.259
+anchor_top = 0.793
+anchor_right = 0.738
+anchor_bottom = 0.919
+margin_left = -0.222
+margin_top = -0.591064
+margin_right = -0.204041
+margin_bottom = 0.246948
+texture_normal = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="CenterContainer/Bg/CloseButton"]
+margin_left = 90.7143
+margin_top = 35.9078
+margin_right = 309.714
+margin_bottom = 126.908
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0.560784 )
+margin_left = 193.0
+margin_top = 458.0
+margin_right = 1051.0
+margin_bottom = 1745.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/in = SubResource( 4 )
+anims/out = SubResource( 5 )
+[connection signal="button_down" from="CenterContainer/Bg/Bar1/TextureRect" to="CenterContainer/Bg/Bar1/TextureRect" method="_on_TextureRect_button_down"]
+[connection signal="button_up" from="CenterContainer/Bg/Bar1/TextureRect" to="CenterContainer/Bg/Bar1/TextureRect" method="_on_TextureRect_button_up"]
+[connection signal="button_down" from="CenterContainer/Bg/Bar2/TextureRect" to="CenterContainer/Bg/Bar2/TextureRect" method="_on_TextureRect_button_down"]
+[connection signal="button_up" from="CenterContainer/Bg/Bar2/TextureRect" to="CenterContainer/Bg/Bar2/TextureRect" method="_on_TextureRect_button_up"]
+[connection signal="button_down" from="CenterContainer/Bg/CloseButton" to="." method="_on_CloseButton_button_down"]

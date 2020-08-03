@@ -1,9 +1,11 @@
 extends State
 
 func update_state(dt)->void:
-	var _plus = Vector2(sin(deg2rad(owner.rect_rotation)), -cos(deg2rad(owner.rect_rotation)))*dt*owner.moving_speed*owner.rect_size
+	if !owner.is_movable:
+		change_state("Idle")
+	var _plus = Vector2(sin(owner.rotation), -cos(owner.rotation))*dt*owner.moving_speed
 #	print(_plus)
-	owner.rect_position += _plus
+	owner.position += _plus
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and !event.pressed:

@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Asset/Pic/Element/element_enemy.png" type="Texture" id=1]
+[ext_resource path="res://Ext/FSM/FSM.gd" type="Script" id=2]
+[ext_resource path="res://Game/Element/Player/StateIdle.gd" type="Script" id=3]
+[ext_resource path="res://Game/Element/Enemy/Enemy.gd" type="Script" id=4]
+[ext_resource path="res://Game/Element/Player/StateMoving.gd" type="Script" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CollisionPolygon2D
+#
+#func _draw():
+#	var _arr = []
+#	for i in polygon:
+#		_arr.append(Color.red)
+#	draw_polygon(polygon, _arr)
+#	pass
+#
+#func _process(delta):
+#	update()
+#	pass
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CollisionPolygon2D
+#
+#func _draw():
+#	var _arr = []
+#	for i in polygon:
+#		_arr.append(Color.red)
+#	draw_polygon(polygon, _arr)
+#	pass
+#
+#func _process(delta):
+#	update()
+#	pass
+"
+
+[sub_resource type="Animation" id=3]
+resource_name = "enemy_die"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Enemy" type="Sprite"]
+position = Vector2( 0.0455933, 50.5929 )
+texture = ExtResource( 1 )
+offset = Vector2( -0.0455933, -50.5929 )
+script = ExtResource( 4 )
+
+[node name="HitBody" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 0
+__meta__ = {
+"_editor_description_": "layer: 0 主角hit 1主角take 2敌人hit 4敌人take"
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBody"]
+position = Vector2( -92.6031, -184.645 )
+build_mode = 1
+polygon = PoolVector2Array( 92.0923, -1.35371, 84.6007, 11.3819, 92.0923, 18.8734, 98.0855, 11.3819 )
+script = SubResource( 1 )
+
+[node name="TakingBody" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 524289
+__meta__ = {
+"_editor_description_": "layer: 0 主角hit 1主角take 2敌人hit 4敌人take"
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TakingBody"]
+position = Vector2( -92.6031, -185.767 )
+polygon = PoolVector2Array( 91.6329, -0.458092, 46.1266, 81.0069, 24.7692, 128.394, 12.2629, 162.25, 7.52148, 192.102, 15.0725, 216.643, 26.808, 236.24, 45.4958, 251.257, 63.8498, 261.602, 86.5421, 268.676, 113.415, 265.817, 135.624, 257.35, 160.164, 234.697, 173.379, 215.819, 179.042, 187.503, 175.266, 153.524, 159.891, 115.422, 143.904, 80.3395, 120.786, 43.9137 )
+script = SubResource( 2 )
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource( 2 )
+states_parent_node_path = NodePath(".")
+ini_state_path = NodePath("Idle")
+is_physics = false
+State_gd_path = "res://Ext/FSM/State.gd"
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource( 3 )
+
+[node name="Moving" type="Node" parent="FSM"]
+script = ExtResource( 5 )
+
+[node name="CenterPoint" type="Position2D" parent="."]
+position = Vector2( -0.469376, 0.773758 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/enemy_die = SubResource( 3 )
+[connection signal="area_entered" from="TakingBody" to="." method="_on_TakingBody_area_entered"]

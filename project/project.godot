@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "AdMob",
+"language": "GDScript",
+"path": "res://admob-lib/admob.gd"
+}, {
+"base": "Node",
 "class": "FSM",
 "language": "GDScript",
 "path": "res://Ext/FSM/FSM.gd"
@@ -19,26 +24,60 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Ext/Gl/Gl.gd"
 }, {
+"base": "Resource",
+"class": "GameSave",
+"language": "GDScript",
+"path": "res://Ext/GameSave/GameSave.gd"
+}, {
+"base": "Control",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Game/Levels/LevelBase.gd"
+}, {
+"base": "Camera2D",
+"class": "SlideCamera2D",
+"language": "GDScript",
+"path": "res://Ext/SlideList/SlideCamera.gd"
+}, {
+"base": "ViewportContainer",
+"class": "SlideContainer",
+"language": "GDScript",
+"path": "res://Ext/SlideList/SlideContainer.gd"
+}, {
+"base": "Viewport",
+"class": "SlideViewport",
+"language": "GDScript",
+"path": "res://Ext/SlideList/SlideViewport.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://Ext/FSM/State.gd"
 } ]
 _global_script_class_icons={
+"AdMob": "",
 "FSM": "res://Ext/FSM/icon_FSM.png",
 "GL": "res://Ext/Gl/icon.png",
+"GameSave": "",
+"Level": "",
+"SlideCamera2D": "",
+"SlideContainer": "",
+"SlideViewport": "",
 "State": "res://Ext/FSM/icon_state.png"
 }
 
 [application]
 
 config/name="DROP"
+config/description="A simple game"
 run/main_scene="res://Game/Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://Asset/Pic/AppIcon/192_192.png"
+config/version="0.0.1"
 
 [autoload]
 
 Gl="*res://Ext/Gl/Gl.tscn"
+GlPlayer="*res://Game/Player/GlPlayer.gd"
 
 [display]
 
@@ -46,6 +85,9 @@ window/size/width=1242
 window/size/height=2208
 window/size/test_width=320
 window/size/test_height=568
+window/handheld/orientation="portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -57,4 +99,6 @@ ui_tap={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Asset/Pic/Element/element_block.png" type="Texture" id=1]
+[ext_resource path="res://Game/Element/Block/Block.gd" type="Script" id=2]
+
+
+[node name="Block" type="Sprite"]
+position = Vector2( 508.542, 466.164 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 1.68188, -1.68179 )
+polygon = PoolVector2Array( -75.7376, -62.0172, -77.8565, 57.1725, -57.7267, 75.1833, 52.4575, 76.7725, 71.5278, 58.2319, 72.0575, -56.1901, 53.5169, -75.2604, -57.197, -75.7902 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

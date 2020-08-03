@@ -14,7 +14,7 @@ dest_files=[ "res://.import/icon_star.png-10d5fe2d116f68504c362186c2fc3fc9.stex"
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

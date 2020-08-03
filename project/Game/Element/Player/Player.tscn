@@ -1,40 +1,71 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Asset/Pic/element_main.png" type="Texture" id=1]
+[ext_resource path="res://Asset/Pic/Element/element_main.png" type="Texture" id=1]
 [ext_resource path="res://Ext/FSM/FSM.gd" type="Script" id=2]
 [ext_resource path="res://Game/Element/Player/StateIdle.gd" type="Script" id=3]
 [ext_resource path="res://Game/Element/Player/Player.gd" type="Script" id=4]
 [ext_resource path="res://Game/Element/Player/StateMoving.gd" type="Script" id=5]
 
-[node name="Player" type="TextureRect"]
-anchor_left = 0.546
-anchor_top = 0.447
-anchor_right = 0.701
-anchor_bottom = 0.57
-margin_left = -0.0333862
-margin_top = 0.805481
-margin_right = 0.456604
-margin_bottom = 0.221436
-rect_pivot_offset = Vector2( 97, 180 )
-rect_clip_content = true
-mouse_filter = 2
+[sub_resource type="GDScript" id=1]
+script/source = "extends CollisionPolygon2D
+#
+#func _draw():
+#	var _arr = []
+#	for i in polygon:
+#		_arr.append(Color.red)
+#	draw_polygon(polygon, _arr)
+#	pass
+#
+#func _process(delta):
+#	update()
+#	pass
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends CollisionPolygon2D
+#
+#func _draw():
+#	var _arr = []
+#	for i in polygon:
+#		_arr.append(Color.red)
+#	draw_polygon(polygon, _arr)
+#	pass
+#
+#func _process(delta):
+#	update()
+#	pass
+"
+
+[node name="Player" type="Sprite"]
 texture = ExtResource( 1 )
-expand = true
+offset = Vector2( 1.87183, -46.9195 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 rotation_speed = 20.0
+moving_speed = 3.0
 
 [node name="HitBody" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 0
+__meta__ = {
+"_editor_description_": "layer: 0 主角hit 1主角take 2敌人hit 4敌人take"
+}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBody"]
+position = Vector2( -92.4652, -186.033 )
+build_mode = 1
 polygon = PoolVector2Array( 92.0923, -1.35371, 84.6007, 11.3819, 92.0923, 18.8734, 98.0855, 11.3819 )
+script = SubResource( 1 )
 
 [node name="TakingBody" type="Area2D" parent="."]
+collision_mask = 524290
+__meta__ = {
+"_editor_description_": "layer: 0 主角hit 1主角take 2敌人hit 4敌人take"
+}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TakingBody"]
+position = Vector2( -92.7582, -185.516 )
 polygon = PoolVector2Array( 91.6329, -0.458092, 46.1266, 81.0069, 24.7692, 128.394, 12.2629, 162.25, 7.52148, 192.102, 15.0725, 216.643, 26.808, 236.24, 45.4958, 251.257, 63.8498, 261.602, 86.5421, 268.676, 113.415, 265.817, 135.624, 257.35, 160.164, 234.697, 173.379, 215.819, 179.042, 187.503, 175.266, 153.524, 159.891, 115.422, 143.904, 80.3395, 120.786, 43.9137 )
+script = SubResource( 2 )
 
 [node name="FSM" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -48,4 +79,7 @@ script = ExtResource( 3 )
 
 [node name="Moving" type="Node" parent="FSM"]
 script = ExtResource( 5 )
-[connection signal="resized" from="." to="." method="_on_Player_resized"]
+
+[node name="CenterPoint" type="Position2D" parent="."]
+position = Vector2( 0.83815, 1.34389 )
+[connection signal="area_entered" from="TakingBody" to="." method="_on_TakingBody_area_entered"]

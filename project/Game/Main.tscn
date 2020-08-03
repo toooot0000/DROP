@@ -1,11 +1,30 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game/EntryScene/EntryScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Asset/Sound/Bgm/Snowland Loop Short.wav" type="AudioStream" id=2]
+[ext_resource path="res://Game/GameScene/GameScene.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/Main.gd" type="Script" id=4]
+[ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=5]
+[ext_resource path="res://Game/SettingScene/SettingScene.tscn" type="PackedScene" id=6]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=7]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+GAME_SCENE = ExtResource( 3 )
+ENTRY_SCENE = ExtResource( 1 )
+SETTING_SCENE = ExtResource( 6 )
+
+[node name="Bg" type="TextureRect" parent="."]
+margin_right = 1242.0
+margin_bottom = 2208.0
+mouse_filter = 2
+texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -16,3 +35,11 @@ __meta__ = {
 stream = ExtResource( 2 )
 autoplay = true
 bus = "BGM"
+
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 7 )
+banner_on_top = false
+banner_id = "ca-app-pub-3940256099942544/6300978111"
+[connection signal="call_setting" from="EntryScene" to="." method="_on_call_setting"]
+[connection signal="start_game" from="EntryScene" to="." method="_on_EntryScene_start_game"]
+[connection signal="start_select_level" from="EntryScene" to="." method="_on_EntryScene_start_select_level"]

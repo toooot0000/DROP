@@ -1,0 +1,327 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=1]
+[ext_resource path="res://Asset/EffectPic/game fail.png" type="Texture" id=2]
+[ext_resource path="res://Asset/Pic/icon_back.png" type="Texture" id=3]
+[ext_resource path="res://Game/CommonUI/Button/CommonButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Asset/Pic/icon_replay.png" type="Texture" id=5]
+[ext_resource path="res://Asset/Pic/icon_setting.png" type="Texture" id=6]
+[ext_resource path="res://Game/GamePassScene/Stars.gd" type="Script" id=7]
+[ext_resource path="res://Asset/Font/站酷快乐体2016修订版.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Game/GamePassScene/Time.gd" type="Script" id=9]
+[ext_resource path="res://Game/GameFailScene/GameFailScene.gd" type="Script" id=10]
+[ext_resource path="res://Asset/Pic/Element/element_main.png" type="Texture" id=11]
+[ext_resource path="res://Asset/Pic/Button/button_green.png" type="Texture" id=12]
+[ext_resource path="res://Asset/Pic/icon_star.png" type="Texture" id=13]
+[ext_resource path="res://Asset/Pic/Button/button_common.png" type="Texture" id=14]
+[ext_resource path="res://Asset/Pic/bg_white.png" type="Texture" id=15]
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "in"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("UpButtons:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Stars:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerPic:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.647059, 0.647059, 0.647059, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Time:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Screen:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.45, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 240
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 220
+outline_color = Color( 0.74902, 0.776471, 0.470588, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 200
+font_data = ExtResource( 8 )
+
+[node name="GameFailScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/in = SubResource( 1 )
+anims/out = SubResource( 2 )
+
+[node name="Bg" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_right = -6.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameEffect" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.490196 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -6.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpButtons" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 10.0793
+margin_top = -5.03967
+margin_right = 1246.08
+margin_bottom = 2202.96
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" parent="UpButtons" instance=ExtResource( 4 )]
+anchor_left = 0.049
+anchor_top = 0.032
+anchor_right = 0.146
+anchor_bottom = 0.113
+margin_left = 0.141998
+margin_top = -0.656006
+margin_right = 0.141998
+margin_bottom = 0.496002
+texture_normal = ExtResource( 3 )
+
+[node name="Replay" parent="UpButtons" instance=ExtResource( 4 )]
+visible = false
+anchor_left = 0.403
+anchor_top = 0.027
+anchor_right = 0.564
+anchor_bottom = 0.118
+margin_left = 0.473969
+margin_top = 0.383999
+margin_right = 0.511963
+margin_bottom = 0.384003
+texture_normal = ExtResource( 5 )
+
+[node name="Setting" parent="UpButtons" instance=ExtResource( 4 )]
+anchor_left = 0.767
+anchor_top = 0.014
+anchor_right = 0.973
+anchor_bottom = 0.13
+margin_left = -0.614014
+margin_top = 0.0879993
+margin_right = -0.466187
+margin_bottom = 0.0880127
+texture_normal = ExtResource( 6 )
+
+[node name="Stars" type="HBoxContainer" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 270.925
+margin_top = 765.943
+margin_right = 973.925
+margin_bottom = 945.943
+mouse_filter = 2
+custom_constants/separation = 40
+alignment = 1
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Star1" type="TextureRect" parent="Stars"]
+margin_left = 41.0
+margin_right = 221.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 180, 180 )
+texture = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star2" type="TextureRect" parent="Stars"]
+margin_left = 261.0
+margin_right = 441.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 180, 180 )
+texture = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star3" type="TextureRect" parent="Stars"]
+margin_left = 481.0
+margin_right = 661.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 180, 180 )
+texture = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 3.52441
+margin_top = 723.238
+margin_right = 1208.52
+margin_bottom = 1398.24
+custom_fonts/font = SubResource( 3 )
+text = "99:99"
+align = 1
+valign = 1
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerPic" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 622.853, 876.551 )
+texture = ExtResource( 11 )
+
+[node name="NextButton" parent="." instance=ExtResource( 4 )]
+visible = false
+anchor_left = 0.211
+anchor_top = 0.602
+anchor_right = 0.807
+anchor_bottom = 0.735
+margin_left = 0.210938
+margin_top = 0.0197754
+margin_right = -0.0211182
+margin_bottom = -0.642944
+texture_normal = ExtResource( 12 )
+
+[node name="Next" type="Label" parent="NextButton"]
+margin_left = -1.0
+margin_top = 4.0
+margin_right = 736.0
+margin_bottom = 297.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.74902, 0.776471, 0.470588, 1 )
+text = "Next"
+align = 1
+valign = 1
+
+[node name="ReplayButton" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.208
+anchor_top = 0.767
+anchor_right = 0.804
+anchor_bottom = 0.9
+margin_left = -0.198181
+margin_top = -195.35
+margin_right = -0.430237
+margin_bottom = -196.014
+texture_normal = ExtResource( 14 )
+
+[node name="Replay" type="Label" parent="ReplayButton"]
+margin_left = -4.75256
+margin_top = -5.60376
+margin_right = 732.247
+margin_bottom = 287.396
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
+text = "Replay"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="button_down" from="UpButtons/Back" to="." method="_on_Back_button_down"]
+[connection signal="button_down" from="UpButtons/Setting" to="." method="_on_Setting_button_down"]
+[connection signal="button_down" from="NextButton" to="." method="_on_NextButton_button_down"]
+[connection signal="button_down" from="ReplayButton" to="." method="_on_ReplayButton_button_down"]
