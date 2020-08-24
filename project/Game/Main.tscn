@@ -36,5 +36,7 @@ bus = "BGM"
 
 [node name="AdMob" type="Node" parent="."]
 script = ExtResource( 7 )
+is_real = true
 banner_on_top = false
-banner_id = "ca-app-pub-9530842074499728/3837206108"
+banner_id = "ca-app-pub-9952695314680522/9327832785"
+[connection signal="banner_loaded" from="AdMob" to="." method="_on_AdMob_banner_loaded"]

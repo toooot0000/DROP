@@ -190,7 +190,7 @@ type = 3
 ] instance=ExtResource( 3 )]
 position = Vector2( 653.796, 1318.44 )
 rotation = -1.83259
-rotation_speed = 15.0
+rotation_speed = 50.0
 moving_speed = 200.0
 
 [node name="Target" parent="." groups=[

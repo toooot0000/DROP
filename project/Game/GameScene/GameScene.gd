@@ -8,21 +8,33 @@ signal game_restart
 signal call_setting
 signal call_back(inst)
 #signal game_ui_setup
+signal player_tap
+signal player_drag(mouse_point)
+signal player_stop_action
 
 export(PackedScene)var current_level_scene setget set_current_level_scene
 export(Dictionary)var intro_info = {}
 
+export(float)var slide_speed = 10
+export(float)var slide_wait_time = 0.2
+
+export(bool)var is_testing_level = false
+export(int)var testing_level_num = 1
+
 var current_level:Node
 var current_level_num:int
 var pass_state:Dictionary
+var mouse_start_point:Vector2
 var is_anim_finished:bool = false
 var is_all_setup:bool = false
 var is_in_guide:bool =false
+var is_mousetimer_timeout:bool = true
 
 var is_border_guide_triggered:bool = false
 
 func _ready():
-#	level_start(1)
+	if is_testing_level and Gl.is_debugging:
+		level_start(testing_level_num)
 	pass
 
 func set_current_level_scene(value:PackedScene):
@@ -33,9 +45,15 @@ func set_current_level_scene(value:PackedScene):
 #	if $IntroLabel:
 #		$IntroLabel.intro_info = current_level.intro_info
 	$TimeBar.star1time = current_level.time_one_star
+	$TimeBar.star2time = current_level.time_two_star
+	$TimeBar.star3time = current_level.time_three_star
 	$Stars.update_star_position([current_level.time_three_star,current_level.time_two_star,current_level.time_one_star])
 	$Level.connect("player_start_move", self, "_on_player_start_move")
 	$Level.connect("player_stop_move", self, "_on_player_stop_move")
+	$Level.connect("player_into_border_zone", self, "_on_player_into_border_zone")
+	connect("player_tap", $Level, "_on_player_tap")
+	connect("player_stop_action", $Level, "_on_player_stop_action")
+	connect("player_drag", $Level, "_on_player_drag")
 	pass
 
 func _on_player_start_move():
@@ -55,8 +73,10 @@ func _on_Level_level_pass():
 		pass_state["star_num"] = 3
 	elif _time<=current_level.time_two_star:
 		pass_state["star_num"] = 2
-	else:
+	elif _time<=current_level.time_one_star:
 		pass_state["star_num"] = 1
+	else:
+		pass_state["star_num"] = 0
 	pass_state["lv_num"] = current_level_num
 	pass_state["is_in_guide"] = is_in_guide
 	emit_signal("game_pass")
@@ -73,15 +93,7 @@ func _on_Level_level_restart():
 
 func level_start(level_number:int):
 	
-	current_level_num = level_number
 	is_all_setup = false
-	$LevelNum.text = "Lv."+str(level_number)
-	$AnimationPlayer.play("in")
-	$TimeBar/Time.reset()
-	if intro_info.has(level_number) and $IntroLabel:
-		$IntroLabel.text = intro_info[level_number]
-		$IntroLabel.intro_info = intro_info[level_number]
-	yield($AnimationPlayer, "animation_finished")
 	
 	var level_scene = load("res://Game/Levels/LevelScenes/"+str(level_number) +".tscn")
 	if level_scene:
@@ -89,12 +101,18 @@ func level_start(level_number:int):
 	else:
 		set_current_level_scene(load("res://Game/Levels/LevelBase.tscn"))
 	
+	current_level_num = level_number
+	$LevelNum.text = "Lv."+str(level_number)
+	$AnimationPlayer.play("in")
+	$TimeBar/Time.reset()
+	if intro_info.has(level_number) and $IntroLabel:
+		$IntroLabel.text = intro_info[level_number]
+		$IntroLabel.intro_info = intro_info[level_number]
+	yield($AnimationPlayer, "animation_finished")
+	$Level.start()
 	yield($Level, "level_setup_finished")
-	$TimeBar/Time.set_working(true)
+#	$TimeBar/Time.set_working(true)
 	is_all_setup = true
-	
-	#链接关卡信号到边界
-	$Level.connect("player_into_border_zone", self, "_on_player_into_border_zone")
 	
 	pass
 
@@ -115,13 +133,11 @@ func restart_level():
 		set_current_level_scene(level_scene)
 	else:
 		set_current_level_scene(load("res://Game/Levels/LevelBase.tscn"))
-	
+	$Level.start()
 	yield($Level, "level_setup_finished")
-	$TimeBar/Time.set_working(true)
+#	$TimeBar/Time.set_working(true)
 	is_all_setup = true
 	
-	#链接关卡信号到边界
-	$Level.connect("player_into_border_zone", self, "_on_player_into_border_zone")
 	
 	pass
 
@@ -156,7 +172,7 @@ func freeze():
 func active():
 	if current_level:
 		current_level.active()
-	$TimeBar/Time.set_working(true)
+#	$TimeBar/Time.set_working(true)
 
 func _on_setting_close():
 	active()
@@ -181,7 +197,42 @@ func _on_player_into_border_zone():
 			_label.name = "BorderGuideLabel"
 			$Level.connect("player_into_border_zone", _label, "player_into_border_zone")
 			$Level.connect("player_out_border_zone", _label, "player_out_border_zone")
-			$Level.raise()
+#			$Level.raise()
 		pass
 	pass
+
+func _input(event):
+#	Gl._print(event)
+	if !is_all_setup:
+		return 
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:#如果左键点击
+		if event.pressed:
+			if is_mousetimer_timeout:
+				#那么设置个时间
+				mouse_start_point = get_global_mouse_position()
+				is_mousetimer_timeout = false
+				$MouseTimer.wait_time = slide_wait_time
+				$MouseTimer.start()
+				Gl._print("鼠标时间开始！")
+		else:
+			Gl._print("玩家离开屏幕！")
+			emit_signal("player_stop_action")
+			$MouseTimer.stop()
+			is_mousetimer_timeout = true
+		pass
+	if event is InputEventMouseMotion and !$MouseTimer.is_stopped():
+#		Gl._print(event)
+		if event.speed.length()>= slide_speed: # and event.speed.x>0:  #向右滑动
+			Gl._print("玩家开始滑动！")
+			$MouseTimer.stop()
+			emit_signal("player_drag", mouse_start_point)
+			is_mousetimer_timeout = true
+		pass
+	
+	pass
+
+func _on_MouseTimer_timeout():
+	Gl._print("玩家点击屏幕！")
+	emit_signal("player_tap")
+	pass # Replace with function body.
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Asset/Pic/Element/element_enemy.png" type="Texture" id=1]
 [ext_resource path="res://Ext/FSM/FSM.gd" type="Script" id=2]
 [ext_resource path="res://Game/Element/Player/StateIdle.gd" type="Script" id=3]
 [ext_resource path="res://Game/Element/Enemy/Enemy.gd" type="Script" id=4]
 [ext_resource path="res://Game/Element/Player/StateMoving.gd" type="Script" id=5]
+[ext_resource path="res://Game/Element/Player/StateSpining.gd" type="Script" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends CollisionPolygon2D
@@ -96,9 +97,16 @@ script = ExtResource( 3 )
 [node name="Moving" type="Node" parent="FSM"]
 script = ExtResource( 5 )
 
+[node name="Spining" type="Node" parent="FSM"]
+script = ExtResource( 6 )
+
 [node name="CenterPoint" type="Position2D" parent="."]
 position = Vector2( -0.469376, 0.773758 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/enemy_die = SubResource( 3 )
+[connection signal="player_drag" from="." to="FSM/Idle" method="_on_Player_player_drag"]
+[connection signal="player_stop_action" from="." to="FSM/Moving" method="_on_Player_player_stop_action"]
+[connection signal="player_stop_action" from="." to="FSM/Spining" method="_on_Player_player_stop_action"]
+[connection signal="player_tap" from="." to="FSM/Idle" method="_on_Player_player_tap"]
 [connection signal="area_entered" from="TakingBody" to="." method="_on_TakingBody_area_entered"]

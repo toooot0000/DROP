@@ -4,6 +4,10 @@ var polygon setget ,get_polygon
 
 var is_anim_finished:bool = false
 
+func _ready():
+	add_to_group("Switch")
+	pass
+
 func get_polygon():
 	return $Area2D/CollisionPolygon2D.polygon
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=1]
 [ext_resource path="res://Asset/EffectPic/game.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Asset/Pic/icon_star.png" type="Texture" id=13]
 [ext_resource path="res://Game/GameScene/Stars.gd" type="Script" id=14]
 [ext_resource path="res://Game/GameScene/IntroStages/IntroLabel/IntroLabel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Game/GameScene/MouseTimer.gd" type="Script" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "in"
@@ -108,14 +109,21 @@ font_data = ExtResource( 8 )
 [node name="GameScene" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 intro_info = {
-3: "Use less time to get more stars"
+3: "Use less time to get more stars",
+4: "Do not touch blocks",
+5: "Competitor?",
+14: "Change its rotation direction.",
+20: "Collect all targets."
 }
+slide_speed = 5.0
+slide_wait_time = 0.13
+is_testing_level = true
+testing_level_num = 20
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/in = SubResource( 1 )
@@ -256,6 +264,7 @@ margin_left = 51.0
 margin_top = 1408.0
 margin_right = 159.0
 margin_bottom = 1516.0
+mouse_filter = 2
 texture = ExtResource( 13 )
 expand = true
 __meta__ = {
@@ -267,6 +276,7 @@ margin_left = 576.0
 margin_top = 1408.0
 margin_right = 684.0
 margin_bottom = 1516.0
+mouse_filter = 2
 texture = ExtResource( 13 )
 expand = true
 __meta__ = {
@@ -278,6 +288,7 @@ margin_left = 1095.0
 margin_top = 1408.0
 margin_right = 1203.0
 margin_bottom = 1516.0
+mouse_filter = 2
 texture = ExtResource( 13 )
 expand = true
 __meta__ = {
@@ -302,8 +313,17 @@ __meta__ = {
 [node name="IntroLabel" parent="." instance=ExtResource( 15 )]
 modulate = Color( 1, 1, 1, 0 )
 text = ""
+
+[node name="MouseTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+script = ExtResource( 16 )
+[connection signal="player_drag" from="." to="TimeBar/Time" method="_on_GameScene_player_drag"]
+[connection signal="player_stop_action" from="." to="TimeBar/Time" method="_on_GameScene_player_stop_action"]
+[connection signal="player_tap" from="." to="TimeBar/Time" method="_on_GameScene_player_tap"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="button_down" from="Buttons/Back" to="." method="_on_Back_button_down"]
 [connection signal="button_down" from="Buttons/Replay" to="." method="_on_Replay_button_down"]
 [connection signal="button_down" from="Buttons/Setting" to="." method="_on_Setting_button_down"]
+[connection signal="timeout" from="MouseTimer" to="." method="_on_MouseTimer_timeout"]

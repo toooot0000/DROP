@@ -19,6 +19,8 @@ signal setting_close
 var game_scene:Node
 
 func _ready():
+#	if Gl.is_debugging:
+#		$AdMob.is_real = false
 	$AdMob.load_banner()
 	if GlPlayer.is_new_player:
 		game_scene = FIRST_GAME_SCENE.instance()

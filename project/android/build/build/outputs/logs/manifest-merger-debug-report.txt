@@ -114,24 +114,24 @@ MERGED from [com.google.android.gms:play-services-ads-base:19.1.0] C:\Users\Jerr
 		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:30:136-163
 	android:allowBackup
 		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:30:68-95
-meta-data#xr_mode_metadata_name
-ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:36:9-38:54
-	android:value
-		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:38:13-51
-	android:name
-		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:37:13-49
-meta-data#plugins
-ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:41:9-43:44
-	android:value
-		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:43:13-42
-	android:name
-		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:42:13-35
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:46:9-48:69
+ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:36:9-38:69
 	android:value
-		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:48:13-67
+		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:38:13-67
 	android:name
-		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:47:13-69
+		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:37:13-69
+meta-data#xr_mode_metadata_name
+ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:41:9-43:54
+	android:value
+		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:43:13-51
+	android:name
+		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:42:13-49
+meta-data#plugins
+ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:46:9-48:44
+	android:value
+		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:48:13-42
+	android:name
+		ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:47:13-35
 activity#com.godot.game.GodotApp
 ADDED from C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:50:9-67:20
 	android:screenOrientation

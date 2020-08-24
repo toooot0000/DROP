@@ -76,12 +76,27 @@ func load_player_save():
 	f.close()
 	
 	f.open(SAVE_LEVEL_PATH, File.READ)
+	
 	var level_number = f.get_64()
-	for i in range(level_number):
-		level_states.append({
-			'passed':f.get_8(),
-			'star':f.get_8()
-		})
+#	if level_number<Gl.all_level_num:#如果存档关卡比现有版本少
+	for i in range(Gl.all_level_num):
+		if i <=level_number:
+			level_states.append({
+				'passed':f.get_8(),
+				'star':f.get_8()
+			})
+		else:
+			level_states.append({
+				'passed':false,
+				'star':0
+			})
+#		pass
+#	elif level_number == Gl.all_level_num:
+#		for i in range(level_number):
+#			level_states.append({
+#				'passed':f.get_8(),
+#				'star':f.get_8()
+#			})
 	f.close()
 	pass
 
@@ -92,6 +107,7 @@ func pass_level(stars:int):
 			level_states[current_level-1]["star"] = stars
 	else:
 		level_states[current_level-1]["star"] = stars
+	#如果到达最后一关就保持在最后一关
 	current_level = clamp(current_level+1, 0, Gl.all_level_num)
 	save()
 
@@ -103,8 +119,8 @@ func set_music_volume(value:float):
 	var b = -1-log(a)
 	
 	var vol = 60*(log(value*k + a) + b)
-	print(value)
-	print(vol)
+#	print(value)
+#	print(vol)
 	vol = clamp(vol, -80, 0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("BGM"), vol)
 #	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("BGM")))
@@ -119,8 +135,8 @@ func set_effect_volume(value:float):
 	var b = -1-log(a)
 	
 	var vol = 60*(log(value*k + a) + b)
-	print(value)
-	print(vol)
+#	print(value)
+#	print(vol)
 	vol = clamp(vol, -80, 0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Effect"), vol)
 #	print(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Effect")))

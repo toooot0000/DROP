@@ -76,29 +76,29 @@
 49        <!-- Do these changes in the export preset. Adding new ones is fine. -->
 50
 51
-52        <!-- XR mode metadata. This is modified by the exporter based on the selected xr mode. DO NOT CHANGE the values here. -->
+52        <!-- android:id = ca-app-pub-9530842074499728~6580464100 -->
 53        <meta-data
-53-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:36:9-38:54
-54            android:name="xr_mode_metadata_name"
-54-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:37:13-49
-55            android:value="xr_mode_metadata_value" />
-55-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:38:13-51
+53-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:36:9-38:69
+54            android:name="com.google.android.gms.ads.APPLICATION_ID"
+54-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:37:13-69
+55            android:value="ca-app-pub-9952695314680522~1640914452" />
+55-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:38:13-67
 56
-57        <!-- Metadata populated at export time and used by Godot to figure out which plugins must be enabled. -->
+57        <!-- XR mode metadata. This is modified by the exporter based on the selected xr mode. DO NOT CHANGE the values here. -->
 58        <meta-data
-58-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:41:9-43:44
-59            android:name="plugins"
-59-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:42:13-35
-60            android:value="plugins_value" />
-60-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:43:13-42
+58-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:41:9-43:54
+59            android:name="xr_mode_metadata_name"
+59-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:42:13-49
+60            android:value="xr_mode_metadata_value" />
+60-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:43:13-51
 61
-62        <!-- android:id = ca-app-pub-9530842074499728~6580464100 -->
+62        <!-- Metadata populated at export time and used by Godot to figure out which plugins must be enabled. -->
 63        <meta-data
-63-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:46:9-48:69
-64            android:name="com.google.android.gms.ads.APPLICATION_ID"
-64-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:47:13-69
-65            android:value="ca-app-pub-9530842074499728~6580464100" />
-65-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:48:13-67
+63-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:46:9-48:44
+64            android:name="plugins"
+64-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:47:13-35
+65            android:value="plugins_value" />
+65-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:48:13-42
 66
 67        <activity
 67-->C:\Users\Jerry\Documents\DROP\project\android\build\AndroidManifest.xml:50:9-67:20

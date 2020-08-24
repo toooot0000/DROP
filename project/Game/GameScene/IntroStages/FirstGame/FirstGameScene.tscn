@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Asset/Font/fnt_zhankukuaile2016.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Asset/Pic/Element/element_main.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Game/GameScene/IntroStages/FirstGame/IntroLine.gd" type="Script" id=16]
 [ext_resource path="res://Asset/Pic/FirstStage/first_title.png" type="Texture" id=17]
 [ext_resource path="res://Asset/EffectPic/First_time_game.png" type="Texture" id=18]
+[ext_resource path="res://Game/GameScene/MouseTimer.gd" type="Script" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "in"
@@ -128,7 +129,6 @@ tracks/0/keys = {
 }
 
 [node name="GameScene" type="Control"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -358,6 +358,11 @@ wait_time = 3.0
 [node name="PlayerFake" type="Sprite" parent="."]
 position = Vector2( 762.234, 1281.68 )
 texture = ExtResource( 2 )
+
+[node name="MouseTimer" type="Timer" parent="."]
+wait_time = 0.13
+one_shot = true
+script = ExtResource( 19 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="button_down" from="Buttons/Back" to="." method="_on_Back_button_down"]

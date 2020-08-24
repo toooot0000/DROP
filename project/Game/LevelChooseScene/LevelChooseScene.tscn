@@ -140,12 +140,12 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_left = 18.49
+margin_left = 40.0
 margin_top = 413.02
-margin_right = 1209.49
+margin_right = 1231.0
 margin_bottom = 1985.02
 custom_constants/vseparation = 20
-custom_constants/hseparation = 55
+custom_constants/hseparation = 50
 columns = 4
 __meta__ = {
 "_edit_use_anchors_": false

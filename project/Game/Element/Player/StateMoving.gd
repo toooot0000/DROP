@@ -7,14 +7,19 @@ func update_state(dt)->void:
 #	print(_plus)
 	owner.position += _plus
 
-func _unhandled_input(event):
-	if event is InputEventMouseButton and !event.pressed:
-		on_player_left()
-	if event is InputEventScreenTouch and !event.pressed:
-		on_player_left()
+#func _unhandled_input(event):
+#	if event is InputEventMouseButton and !event.pressed:
+#		on_player_left()
+#	if event is InputEventScreenTouch and !event.pressed:
+#		on_player_left()
 
 
 func on_player_left():
 	owner.emit_signal("stop_move")
 	change_state("Idle")
 	pass
+
+
+func _on_Player_player_stop_action():
+	on_player_left()
+	pass # Replace with function body.

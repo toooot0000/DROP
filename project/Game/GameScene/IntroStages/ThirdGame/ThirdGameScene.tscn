@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Asset/Font/fnt_zhankukuaile2016.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Asset/Pic/bg_green.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Asset/Pic/bg_common.png" type="Texture" id=13]
 [ext_resource path="res://Game/GameScene/IntroStages/ThirdGame/IntroLine3.gd" type="Script" id=14]
 [ext_resource path="res://Game/GameScene/IntroStages/ThirdGame/ThirdGameScene.gd" type="Script" id=15]
+[ext_resource path="res://Game/GameScene/MouseTimer.gd" type="Script" id=16]
 [ext_resource path="res://Asset/EffectPic/First_time_game.png" type="Texture" id=18]
 
 [sub_resource type="Animation" id=1]
@@ -303,13 +304,13 @@ __meta__ = {
 }
 
 [node name="IntroLine" type="Label" parent="."]
-margin_left = 92.0
+margin_left = 44.0
 margin_top = 1500.0
-margin_right = 1149.0
+margin_right = 1197.0
 margin_bottom = 1800.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
-text = "Use less time to get more stars"
+text = "Time passes when Drop moves."
 align = 1
 valign = 1
 autowrap = true
@@ -317,7 +318,7 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-intro_info = "Use less time to get more stars"
+intro_info = "Time passes when Drop moves."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="IntroLine"]
 anims/idle = SubResource( 6 )
@@ -330,6 +331,11 @@ wait_time = 3.0
 [node name="BgGreen" type="Sprite" parent="."]
 position = Vector2( 616.273, 1108.16 )
 texture = ExtResource( 2 )
+
+[node name="MouseTimer" type="Timer" parent="."]
+wait_time = 0.13
+one_shot = true
+script = ExtResource( 16 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="button_down" from="Buttons/Back" to="." method="_on_Back_button_down"]

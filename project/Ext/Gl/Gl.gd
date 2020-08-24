@@ -9,6 +9,8 @@ export(Array, String) var table_name_list
 #表格后缀
 export(String) var suffix = '.dat'
 
+export(bool)var is_debugging = false
+
 var _csv_dic = {}
 onready var random_seed_array = rand_seed(OS.get_system_time_secs())
 #onready var random_seed = random_seed_array[0]
@@ -21,11 +23,6 @@ onready var random_seed_array = rand_seed(OS.get_system_time_secs())
 
 func _ready():
 	seed(random_seed_array[0])
-	if table_name_list.size()>0:
-		for _csv_name in table_name_list:
-			_build_table(_csv_name)
-	else:
-		pass
 
 func _change_type(type:String, value:String):
 	match type:
@@ -157,6 +154,7 @@ func array_link(arr1:Array, arr2:Array)->Array:
 func random_by_weight(pair_array:Array):
 	return random_from_weights(pair_array)
 
+#[content, weight]
 func choose_by_weight(pair_array:Array, choose_num:int, put_back:bool=false)->Array:
 	var results:Array = []
 	if choose_num>=pair_array.size():#如果选择的数字太多配对太少
@@ -209,3 +207,6 @@ func list_files_in_directory(path):
 	dir.list_dir_end()
 	return files
 
+func _print(msg):
+	if is_debugging:
+		print(msg)

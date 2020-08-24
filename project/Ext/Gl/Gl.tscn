@@ -12,8 +12,9 @@ const BORDER_GUIDE_LINE = preload(\"res://Game/GameScene/IntroStages/BorderGuide
 
 enum FAIL_TYPE{ENEMY_TOUCH_PLAYER, PLAYER_TOUCH_BLOCK, ENEMY_TOUCH_TARGET}
 
-export(bool)var is_debugging = false
 export(int)var all_level_num = 5
+
+
 
 func get_all_level_num():
 	var list = list_files_in_directory('res://Game/Levels/LevelScenes/')
@@ -25,3 +26,4 @@ func get_all_level_num():
 
 [node name="Gl" type="Node"]
 script = SubResource( 1 )
+all_level_num = 20

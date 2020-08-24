@@ -10,6 +10,10 @@ signal level_setup_finished
 signal player_into_border_zone
 signal player_out_border_zone
 
+signal player_drag(mouse_point)
+signal player_tap
+signal player_stop_action
+
 enum TARGET_TYPE{TARGET, ALL_ENEMY}
 
 export(TARGET_TYPE)var target_type 
@@ -20,6 +24,8 @@ export(float)var time_three_star
 
 #var is_anim_finished:bool = false
 
+var target_num:float = 0
+
 func _ready():
 	modulate.a = 0
 	connect("level_fail", get_parent(), "_on_Level_level_fail")
@@ -28,13 +34,17 @@ func _ready():
 	
 	$Player.is_movable = false
 	get_tree().call_group("Enemy", "set_movable", false)
+#	target_num = get_tree().get_nodes_in_group("Target").size()
+	
+	
+	pass
+
+func start():
 	$AnimationPlayer.play("level_start")
 	yield($AnimationPlayer, "animation_finished")
 	$Player.is_movable = true
 	get_tree().call_group("Enemy", "set_movable", true)
 	emit_signal("level_setup_finished")
-	
-	pass
 
 func player_hit_border():
 	print("Player hit border!")
@@ -43,12 +53,18 @@ func player_hit_border():
 	get_tree().call_group("Enemy", "set_movable", false)
 	pass
 
-func _on_Target_player_touch_target():
+func _on_Target_player_touch_target(inst):
+	if $AnimationPlayer.is_playing():
+		return
+	target_num-=1
+	if target_num>0:
+		inst.disappear()
+		return 
 	print("Player Touch Target")
 	get_tree().call_group("Enemy", "set_movable", false)
 	$Player.is_movable = false
-	$Polygon2D.position = $Target.position
-	$Polygon2D.polygon = $Target.polygon
+	$Polygon2D.position = inst.position
+	$Polygon2D.polygon = inst.polygon
 	$Polygon2D.show()
 	$Polygon2D.color = Gl.GREEN
 	$AnimationPlayer.play("level_clear")
@@ -56,12 +72,14 @@ func _on_Target_player_touch_target():
 	emit_signal("level_pass")
 	pass # Replace with function body.
 
-func _on_Target_enemy_touch_target():
+func _on_Target_enemy_touch_target(inst):
+	if $AnimationPlayer.is_playing():
+		return
 	print("Enemy Touch Target")
 	get_tree().call_group("Enemy", "set_movable", false)
 	$Player.is_movable = false
-	$Polygon2D.position = $Target.position
-	$Polygon2D.polygon = $Target.polygon
+	$Polygon2D.position = inst.position
+	$Polygon2D.polygon = inst.polygon
 	$Polygon2D.show()
 	$Polygon2D.color = Gl.GRAY
 	$AnimationPlayer.play("level_clear")
@@ -70,6 +88,8 @@ func _on_Target_enemy_touch_target():
 	pass # Replace with function body.
 
 func _on_Player_touched_by_enemy():
+	if $AnimationPlayer.is_playing():
+		return
 	print("Enemy Touch Player")
 	get_tree().call_group("Enemy", "set_movable", false)
 	$Player.is_movable = false
@@ -85,6 +105,8 @@ func _on_Player_touched_by_enemy():
 	pass # Replace with function body.
 
 func _on_Block_player_touch_block(block):
+	if $AnimationPlayer.is_playing():
+		return
 	print("Player Touch Block")
 	get_tree().call_group("Enemy", "set_movable", false)
 	$Player.is_movable = false
@@ -103,6 +125,8 @@ func _on_Block_enemy_touch_block(block, enemy):
 
 func _on_Enemy_enemy_touch_border(enemy):
 	emit_signal("level_restart")
+	$Player.is_movable = false
+	get_tree().call_group("Enemy", "set_movable", false)
 	pass
 
 func _on_Player_player_touch_border():
@@ -117,5 +141,17 @@ func freeze():
 func active():
 	$Player.is_movable = true
 	get_tree().call_group("Enemy", "set_movable", true)
+	pass
+
+func _on_player_tap():
+	emit_signal("player_tap")
+	pass
+
+func _on_player_drag(mouse_point:Vector2):
+	emit_signal("player_drag", mouse_point)
+	pass
+
+func _on_player_stop_action():
+	emit_signal("player_stop_action")
 	pass
 

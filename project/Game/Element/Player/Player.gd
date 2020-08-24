@@ -7,6 +7,9 @@ signal touched_by_enemy
 signal player_touch_border
 signal start_move
 signal stop_move
+signal player_drag(mouse_point)
+signal player_tap
+signal player_stop_action
 
 var origin_size:Vector2 = Vector2(193, 271)
 var center_point:Vector2 = Vector2.ZERO
@@ -31,19 +34,37 @@ func _process(delta):
 	center_point = position + $CenterPoint.position
 	is_moving = $FSM.current_state.name == "Moving"
 
-
 func change_state(state_name:String):
 	$FSM.change_state(state_name)
 	pass
 
-
 func _on_TakingBody_area_entered(area):
-	if is_moving:
-		if area.owner.is_in_group("Enemy") and !area.owner.is_queued_for_deletion():
-			emit_signal("touched_by_enemy")
-		elif area.is_in_group("Border"):
-			emit_signal("player_touch_border")
-			pass
+#	if is_moving:
+	if area.owner.is_in_group("Enemy") and !area.owner.is_queued_for_deletion():
+		emit_signal("touched_by_enemy")
+	elif area.is_in_group("Border"):
+		emit_signal("player_touch_border")
+		pass
+#	elif area.owner.is_in_group("Switch"):
+#
+#		pass
 #		elif area.owner.is_in_group("Block"):
 #			emit_signal(tou)
+	pass
+
+func _ready():
+	owner.connect("player_drag", self, "_on_player_drag")
+	owner.connect("player_tap", self, "_on_player_tap")
+	owner.connect("player_stop_action", self, "_on_player_stop_action")
+
+func _on_player_tap():
+	emit_signal("player_tap")
+	pass
+
+func _on_player_drag(mouse_point:Vector2):
+	emit_signal("player_drag", mouse_point)
+	pass
+
+func _on_player_stop_action():
+	emit_signal("player_stop_action")
 	pass

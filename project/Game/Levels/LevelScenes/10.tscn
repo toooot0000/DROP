@@ -1,0 +1,240 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Game/Levels/LevelBase.gd" type="Script" id=1]
+[ext_resource path="res://Asset/Pic/Game/borderline_horizontal.png" type="Texture" id=2]
+[ext_resource path="res://Game/Element/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Asset/Pic/Game/borderline_vertical.png" type="Texture" id=4]
+[ext_resource path="res://Game/Levels/BorderLine.gd" type="Script" id=5]
+[ext_resource path="res://Game/Element/Block/Block.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Game/Element/Target/Target.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game/Element/Enemy/Enemy.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 621.193, 158.489 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 186.879, 794.666 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "level_clear"
+length = 0.5
+step = 0.01
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Polygon2D:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Polygon2D:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Polygon2D:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Polygon2D:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.252576, 0.192476, 0.8, -0.229058, -0.241017, 0.0471104, 0.0380366, 1, -0.0517474, -0.0449434, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.44, 0.5 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Polygon2D:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0.8, -0.25, 0, 0.342814, 12.6189, 50, -0.390654, -0.0367088, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Polygon2D:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0.8, -0.25, 0, 0.359068, 15.3294, 50, -0.398042, -0.317097, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Level" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 9.0
+margin_bottom = 5.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+time_one_star = 90.0
+time_two_star = 55.0
+time_three_star = 32.0
+
+[node name="BorderUp" type="Area2D" parent="." groups=[
+"Border",
+]]
+position = Vector2( -2, 4 )
+collision_layer = 2148007936
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderUp"]
+position = Vector2( 622.107, 148.52 )
+shape = SubResource( 1 )
+
+[node name="BorderDown" type="Area2D" parent="." groups=[
+"Border",
+]]
+position = Vector2( -2, 4 )
+collision_layer = 0
+collision_mask = 2147483651
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderDown"]
+position = Vector2( 627.99, 2013.4 )
+shape = SubResource( 1 )
+
+[node name="BorderDown2" type="Area2D" parent="." groups=[
+"Border",
+]]
+position = Vector2( -2, 4 )
+collision_layer = 0
+collision_mask = 2147483651
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderDown2"]
+position = Vector2( -167.147, 1083.38 )
+shape = SubResource( 2 )
+
+[node name="BorderDown3" type="Area2D" parent="." groups=[
+"Border",
+]]
+position = Vector2( -2, 4 )
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderDown3"]
+position = Vector2( 1407.96, 1083.38 )
+shape = SubResource( 2 )
+
+[node name="BorderLine" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="borderline_right" type="Sprite" parent="BorderLine"]
+position = Vector2( 1226.62, 1079.09 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+distance = 100.0
+type = 2
+
+[node name="borderline_up" type="Sprite" parent="BorderLine"]
+position = Vector2( 621.345, 303.614 )
+texture = ExtResource( 2 )
+script = ExtResource( 5 )
+distance = 100.0
+
+[node name="borderline_left" type="Sprite" parent="BorderLine"]
+position = Vector2( 17.9869, 1079.09 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+distance = 100.0
+type = 1
+
+[node name="borderline_down" type="Sprite" parent="BorderLine"]
+position = Vector2( 623.345, 1864.84 )
+texture = ExtResource( 2 )
+script = ExtResource( 5 )
+distance = 100.0
+type = 3
+
+[node name="Block" parent="." instance=ExtResource( 6 )]
+position = Vector2( 599.256, 1081.01 )
+
+[node name="Player" parent="." groups=[
+"Player",
+] instance=ExtResource( 3 )]
+position = Vector2( 273.37, 1510.01 )
+rotation = 0.785397
+rotation_speed = 80.0
+moving_speed = 250.0
+
+[node name="Enemy" parent="." groups=[
+"Enemy",
+] instance=ExtResource( 8 )]
+position = Vector2( 659.884, 503.321 )
+rotation = -3.14159
+scale = Vector2( 0.8, 0.8 )
+rotation_speed = 120.0
+moving_speed = 150.0
+
+[node name="Enemy2" parent="." groups=[
+"Enemy",
+] instance=ExtResource( 8 )]
+position = Vector2( 1037.86, 876.258 )
+rotation = -1.309
+scale = Vector2( 0.8, 0.8 )
+rotation_speed = 120.0
+moving_speed = 150.0
+
+[node name="Target" parent="." groups=[
+"Target",
+] instance=ExtResource( 7 )]
+position = Vector2( 955.912, 572.823 )
+scale = Vector2( 0.885965, 0.885965 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/level_clear = SubResource( 3 )
+anims/level_start = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "Effect"
+[connection signal="area_entered" from="BorderUp" to="." method="_on_BorderUp_area_entered"]
+[connection signal="area_entered" from="BorderDown" to="." method="_on_BorderDown_area_entered"]
+[connection signal="area_entered" from="BorderDown2" to="." method="_on_BorderDown2_area_entered"]
+[connection signal="area_entered" from="BorderDown3" to="." method="_on_BorderDown3_area_entered"]
+[connection signal="player_touch_border" from="Player" to="." method="_on_Player_player_touch_border"]
+[connection signal="touched_by_enemy" from="Player" to="." method="_on_Player_touched_by_enemy"]
+[connection signal="enemy_touch_target" from="Target" to="." method="_on_Target_enemy_touch_target"]
+[connection signal="player_touch_target" from="Target" to="." method="_on_Target_player_touch_target"]

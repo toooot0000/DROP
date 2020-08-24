@@ -32,6 +32,11 @@
         <!-- The following metadata values are replaced when Godot exports, modifying them here has no effect. -->
         <!-- Do these changes in the export preset. Adding new ones is fine. -->
 
+        <!--android:id = ca-app-pub-9530842074499728~6580464100-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9952695314680522~1640914452"/>
+        
         <!-- XR mode metadata. This is modified by the exporter based on the selected xr mode. DO NOT CHANGE the values here. -->
         <meta-data
             android:name="xr_mode_metadata_name"
@@ -41,11 +46,6 @@
         <meta-data
             android:name="plugins"
             android:value="plugins_value"/>
-
-        <!--android:id = ca-app-pub-9530842074499728~6580464100-->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9530842074499728~6580464100"/>
         
         <activity
             android:name=".GodotApp"

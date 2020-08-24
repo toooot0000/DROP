@@ -6,6 +6,7 @@ var is_processed:bool = false
 func _ready():
 	$Timer.start()
 	modulate.a = 1
+	
 
 func _process(delta):
 	if is_player_moving:
@@ -21,7 +22,7 @@ func _process(delta):
 			is_processed = true
 			$AnimationPlayer.play("out")
 			yield($AnimationPlayer, "animation_finished")
-			text = "Drop spins when not moving"
+			text = "Swipe left or right to spin Drop"
 			$Timer.start()
 			$AnimationPlayer.play("in")
 			pass

@@ -14,7 +14,7 @@ func _process(delta):
 		if !$AnimationPlayer.is_playing() and !is_processed and !is_show:
 			is_processed = true
 			is_show = true
-			text = "Touch borders will reset level"
+			text = "Touching borders will reset level"
 			$Timer.start()
 			$AnimationPlayer.play("in")
 	pass

@@ -57,12 +57,12 @@ tracks/0/keys = {
 [node name="BorderGuideLine" type="Label"]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 92.0
-margin_top = 908.239
+margin_top = 342.177
 margin_right = 1149.0
-margin_bottom = 1208.24
+margin_bottom = 642.177
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.568627, 0.568627, 0.568627, 1 )
-text = "Touch borders will reset level"
+text = "Touching borders will reset level"
 align = 1
 valign = 1
 autowrap = true
