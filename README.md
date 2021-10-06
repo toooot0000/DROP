@@ -1,4 +1,4 @@
-![title](project/Assets/title_main.png)
+![title](project/Asset/Pic/title_main.png)
 # DROP
 
 ----
